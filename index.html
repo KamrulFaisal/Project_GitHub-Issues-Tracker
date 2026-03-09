@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,25 +11,34 @@
 
 <!-- LOGIN PAGE -->
 
-<div id="loginPage" class="login-container">
+<div id="loginPage">
 
-<img src="./assets/github-logo.png" class="logo">
+<form id="loginForm" class="login-container">
+
+<img src="assets/github-logo.png" class="logo">
 
 <h1>GitHub Issues Tracker</h1>
 <p>Track and manage repository issues</p>
 
-<input id="username" type="text" placeholder="Username">
-<input id="password" type="password" placeholder="Password">
+<input id="username" type="text" placeholder="Username" required>
+<input id="password" type="password" placeholder="Password" required>
 
-<button id="loginBtn">Sign In</button>
+<button type="submit" class="loginBtn">Sign In</button>
+
+<div class="divider">
+<span>OR</span>
+</div>
 
 <div class="demo">
-Demo credentials<br>
-Username: admin<br>
-Password: admin123
+Demo credentials:<br><br>
+
+<b>Username:</b> admin<br>
+<b>Password:</b> admin123
 </div>
 
 <p id="loginError"></p>
+
+</form>
 
 </div>
 
@@ -43,7 +51,7 @@ Password: admin123
 <nav class="navbar">
 
 <div class="logoSection">
-<img src="./assets/github-logo.png">
+<img src="assets/github-logo.png">
 <h2>GitHub Issue Tracker</h2>
 </div>
 
@@ -55,24 +63,20 @@ Password: admin123
 </nav>
 
 
-
 <div class="issueHeader">
 
 <div class="leftHeader">
-<img src="./assets/Aperture.png">
+<img src="assets/Aperture.png">
 <span id="issueCount">0 Issues</span>
 </div>
 
 <div class="tabs">
-
-<button class="tab active" data-tab="all">All</button>
-<button class="tab" data-tab="open">Open</button>
-<button class="tab" data-tab="closed">Closed</button>
-
+<button class="tab active" data-type="all">All</button>
+<button class="tab" data-type="open">Open</button>
+<button class="tab" data-type="closed">Closed</button>
 </div>
 
 </div>
-
 
 
 <div id="loader" class="loader hidden"></div>
@@ -89,16 +93,16 @@ Password: admin123
 
 <div class="modalContent">
 
-<span class="close">&times;</span>
+<span id="closeModal" class="close">×</span>
 
 <h2 id="modalTitle"></h2>
 <p id="modalDesc"></p>
 
-<p><strong>Status:</strong> <span id="modalStatus"></span></p>
-<p><strong>Author:</strong> <span id="modalAuthor"></span></p>
-<p><strong>Priority:</strong> <span id="modalPriority"></span></p>
-<p><strong>Label:</strong> <span id="modalLabel"></span></p>
-<p><strong>Created:</strong> <span id="modalCreated"></span></p>
+<p><b>Status:</b> <span id="modalStatus"></span></p>
+<p><b>Author:</b> <span id="modalAuthor"></span></p>
+<p><b>Priority:</b> <span id="modalPriority"></span></p>
+<p><b>Label:</b> <span id="modalLabel"></span></p>
+<p><b>Created:</b> <span id="modalCreated"></span></p>
 
 </div>
 

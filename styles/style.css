@@ -1,0 +1,222 @@
+body{
+font-family: Arial;
+margin:0;
+background:#f6f8fa;
+}
+
+/* hidden utility */
+
+.hidden{
+display:none;
+}
+
+/* LOGIN PAGE */
+
+.login-container{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+height:100vh;
+text-align:center;
+}
+
+.logo{
+width:80px;
+margin-bottom:20px;
+}
+
+input{
+width:260px;
+padding:12px;
+margin:6px 0;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:14px;
+}
+
+/* SIGN IN BUTTON */
+
+.loginBtn{
+width:260px;
+padding:12px;
+margin-top:8px;
+background:#4a00ff;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.loginBtn:hover{
+opacity:0.9;
+}
+
+/* OR DIVIDER */
+
+.divider{
+display:flex;
+align-items:center;
+width:260px;
+margin:20px 0;
+}
+
+.divider::before,
+.divider::after{
+content:"";
+flex:1;
+height:1px;
+background:#ccc;
+}
+
+.divider span{
+padding:0 10px;
+font-weight:bold;
+color:#666;
+}
+
+/* DEMO TEXT */
+
+.demo{
+font-size:14px;
+color:#444;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+background:white;
+border-bottom:1px solid #ddd;
+}
+
+.logoSection{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logoSection img{
+width:35px;
+}
+
+/* HEADER */
+
+.issueHeader{
+display:flex;
+justify-content:space-between;
+padding:20px;
+}
+
+.leftHeader{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.leftHeader img{
+width:28px;
+}
+
+.tabs button{
+margin-left:10px;
+padding:8px 14px;
+cursor:pointer;
+}
+
+.tab.active{
+background:black;
+color:white;
+}
+
+/* ISSUE GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:20px;
+}
+
+@media(max-width:900px){
+.grid{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:500px){
+.grid{grid-template-columns:1fr;}
+}
+
+/* ISSUE CARD */
+
+.card{
+background:white;
+padding:15px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.openBorder{
+border-top:4px solid green;
+}
+
+.closedBorder{
+border-top:4px solid purple;
+}
+
+/* MODAL (safe version) */
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+justify-content:center;
+align-items:center;
+}
+
+.modal.show{
+display:flex;
+}
+
+.modalContent{
+background:white;
+padding:25px;
+width:400px;
+border-radius:8px;
+}
+
+.close{
+cursor:pointer;
+font-size:22px;
+float:right;
+}
+
+/* LOADER */
+
+.loader{
+display:none;
+border:6px solid #f3f3f3;
+border-top:6px solid black;
+border-radius:50%;
+width:40px;
+height:40px;
+animation:spin 1s linear infinite;
+margin:20px auto;
+}
+
+.loader.show{
+display:block;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg)}
+100%{transform:rotate(360deg)}
+}
