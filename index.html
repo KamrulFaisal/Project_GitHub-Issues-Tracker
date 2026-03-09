@@ -1,97 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Issues Tracker</title>
-    <link rel="stylesheet" href="styles/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Issues Tracker</title>
+<link rel="stylesheet" href="styles/style.css">
 </head>
 
-<!-- Login page -->
 <body>
 
-    <div id="loginPage" class="login-container">
-        <img src="./Github-Issue-Tracker/assets/github-logo.png" class="logo" alt="github logo">
-       <h1>GitHub Issues Tracker</h1>
-       <p>Track and manage repository issues</p>
+<!-- LOGIN PAGE -->
 
-       <input id="username" type="text" placeholder="Username">
-       <input id="password" type="password" placeholder="Password">
-       <button onclick="login()">Sign In</button>
-        <div class="demo">
-        Demo credentials<br>
-        Username: admin<br>
-        Password: admin123
-        </div>
-        <p id="loginError"></p>
-    </div>
+<div id="loginPage" class="login-container">
 
-    <!-- Main page -->
-     <div id="mainPage" class="hidden">
+<img src="./assets/github-logo.png" class="logo">
 
-    <!-- NAVBAR -->
+<h1>GitHub Issues Tracker</h1>
+<p>Track and manage repository issues</p>
 
-    <nav class="navbar">
+<input id="username" type="text" placeholder="Username">
+<input id="password" type="password" placeholder="Password">
 
-    <div class="logoSection">
-    <img src="./Github-Issue-Tracker/assets/github-logo.png">
-    <h2>GitHub Issue Tracker</h2>
-    </div>
+<button id="loginBtn">Sign In</button>
 
-    <div class="searchBox">
-    <input id="searchInput" placeholder="Search issues">
-    <button onclick="searchIssues()">Search</button>
-    </div>
-    </nav>
-
-    <!-- ISSUE HEADER -->
-
-    <div class="issueHeader">
-
-    <div class="leftHeader">
-    <img src="./Github-Issue-Tracker/assets/Aperture.png">
-    <span id="issueCount">0 Issues</span>
-    </div>
-
-    <div class="tabs">
-
-    <button class="tab active"      onclick="loadTab('all')">All</button>
-    <button class="tab" onclick="loadTab('open')">Open</button>
-    <button class="tab" onclick="loadTab('closed')">Closed</button>
-    </div>
+<div class="demo">
+Demo credentials<br>
+Username: admin<br>
+Password: admin123
 </div>
 
-    <!-- LOADER -->
+<p id="loginError"></p>
 
-    <div id="loader" class="loader hidden"></div>
-
-    <!-- ISSUE GRID -->
-
-    <div id="issueContainer" class="grid"></div>
 </div>
-    <!-- MODAL -->
 
-    <div id="modal" class="modal hidden">
 
-    <div class="modalContent">
 
-    <span class="close" onclick="closeModal()">×</span>
+<!-- MAIN PAGE -->
 
-    <h2 id="modalTitle"></h2>
+<div id="mainPage" class="hidden">
 
-    <p id="modalDesc"></p>
+<nav class="navbar">
 
-    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
-    <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
-    <p><strong>Priority:</strong> <span id="modalPriority"></span></p>
-    <p><strong>Label:</strong> <span id="modalLabel"></span></p>
-    <p><strong>Created:</strong> <span id="modalCreated"></span></p>
-    </div>
+<div class="logoSection">
+<img src="./assets/github-logo.png">
+<h2>GitHub Issue Tracker</h2>
+</div>
+
+<div class="searchBox">
+<input id="searchInput" placeholder="Search issues">
+<button id="searchBtn">Search</button>
+</div>
+
+</nav>
+
+
+
+<div class="issueHeader">
+
+<div class="leftHeader">
+<img src="./assets/Aperture.png">
+<span id="issueCount">0 Issues</span>
+</div>
+
+<div class="tabs">
+
+<button class="tab active" data-tab="all">All</button>
+<button class="tab" data-tab="open">Open</button>
+<button class="tab" data-tab="closed">Closed</button>
+
+</div>
+
+</div>
+
+
+
+<div id="loader" class="loader hidden"></div>
+
+<div id="issueContainer" class="grid"></div>
+
+</div>
+
+
+
+<!-- MODAL -->
+
+<div id="modal" class="modal hidden">
+
+<div class="modalContent">
+
+<span class="close">&times;</span>
+
+<h2 id="modalTitle"></h2>
+<p id="modalDesc"></p>
+
+<p><strong>Status:</strong> <span id="modalStatus"></span></p>
+<p><strong>Author:</strong> <span id="modalAuthor"></span></p>
+<p><strong>Priority:</strong> <span id="modalPriority"></span></p>
+<p><strong>Label:</strong> <span id="modalLabel"></span></p>
+<p><strong>Created:</strong> <span id="modalCreated"></span></p>
+
+</div>
 
 </div>
 
 <script src="script.js"></script>
 
-    
 </body>
 </html>
