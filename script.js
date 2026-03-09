@@ -1,234 +1,162 @@
-/* ------------------ API ------------------ */
+const API="https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
-const API_URL = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+let issues=[];
 
-let issues = [];
+const loginForm=document.getElementById("loginForm");
+const searchBtn=document.getElementById("searchBtn");
+const tabs=document.querySelectorAll(".tab");
 
+loginForm.addEventListener("submit",login);
+searchBtn.addEventListener("click",searchIssues);
 
-/* ------------------ ELEMENTS ------------------ */
+document.getElementById("closeModal").onclick=closeModal;
 
-const loginForm = document.getElementById("loginForm");
-const loginPage = document.getElementById("loginPage");
-const mainPage = document.getElementById("mainPage");
+tabs.forEach(tab=>{
+tab.onclick=()=>{
+tabs.forEach(t=>t.classList.remove("active"));
+tab.classList.add("active");
+filterIssues(tab.dataset.type);
+};
+});
 
-const searchInput = document.getElementById("searchInput");
-const searchBtn = document.getElementById("searchBtn");
-
-const issueContainer = document.getElementById("issueContainer");
-const issueCount = document.getElementById("issueCount");
-
-const loader = document.getElementById("loader");
-
-const tabs = document.querySelectorAll(".tab");
-
-const modal = document.getElementById("modal");
-const closeModalBtn = document.getElementById("closeModal");
-
-
-/* ------------------ LOGIN ------------------ */
-
-loginForm.addEventListener("submit", function(e){
+function login(e){
 
 e.preventDefault();
 
-const username = document.getElementById("username").value;
-const password = document.getElementById("password").value;
+const user=document.getElementById("username").value;
+const pass=document.getElementById("password").value;
 
-if(username === "admin" && password === "admin123"){
+if(user==="admin" && pass==="admin123"){
 
-loginPage.classList.add("hidden");
-mainPage.classList.remove("hidden");
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("mainPage").classList.remove("hidden");
 
 loadIssues();
 
 }else{
 
-document.getElementById("loginError").innerText = "Invalid credentials";
+document.getElementById("loginError").innerText="Invalid credentials";
 
 }
 
-});
-
-
-/* ------------------ LOAD ISSUES ------------------ */
+}
 
 async function loadIssues(){
 
-showLoader();
+const res=await fetch(API);
+const data=await res.json();
 
-try{
-
-const response = await fetch(API_URL);
-const data = await response.json();
-
-issues = data.data || [];
+issues=data.data||[];
 
 renderIssues(issues);
 
-}catch(error){
-
-console.error("Error loading issues:", error);
-
 }
 
-hideLoader();
+function renderIssues(list){
 
-}
+const container=document.getElementById("issueContainer");
 
+container.innerHTML="";
 
-/* ------------------ RENDER ISSUES ------------------ */
+document.getElementById("issueCount").innerText=list.length+" Issues";
 
-function renderIssues(issueList){
+list.forEach(issue=>{
 
-issueContainer.innerHTML = "";
+const status=(issue.status||"").toLowerCase();
+const priority=(issue.priority||"").toLowerCase();
 
-issueCount.innerText = issueList.length + " Issues";
+const card=document.createElement("div");
 
-issueList.forEach(issue => {
+card.className="card";
 
-const status = (issue.status || "").toLowerCase();
+card.innerHTML=`
 
-const card = document.createElement("div");
+<div class="cardTop">
 
-card.className = "card " + (status === "open" ? "openBorder" : "closedBorder");
+<img class="statusIcon" src="assets/${status==="open"?"Open-Status.png":"Closed- Status .png"}">
 
-card.innerHTML = `
-<h3>${issue.title || "No Title"}</h3>
+<span class="priority ${priority}">${issue.priority||""}</span>
 
-<p>${issue.description || ""}</p>
+</div>
 
-<p>Status: ${issue.status || ""}</p>
+<div class="cardTitle">Fix Navigation Menu On Mobile Devices</div>
+
+<div class="cardDesc">
+The navigation menu doesn't collapse properly in mobile devices...
+</div>
+
+<div class="labelRow">
+
+<span class="label bug">BUG</span>
+
+<span class="label help">HELP WANTED</span>
+
+<span class="label enhancement">ENHANCEMENT</span>
+
+</div>
+
+<div class="cardFooter">
+
+#${issue.id||1} by john_doe<br>
+
+1/15/2024
+
+</div>
+
 `;
 
-card.addEventListener("click", () => openModal(issue));
+card.onclick=()=>openModal(issue);
 
-issueContainer.appendChild(card);
+container.appendChild(card);
 
 });
 
 }
-
-
-/* ------------------ TABS FILTER ------------------ */
-
-tabs.forEach(tab => {
-
-tab.addEventListener("click", () => {
-
-tabs.forEach(t => t.classList.remove("active"));
-tab.classList.add("active");
-
-const type = tab.dataset.type;
-
-filterIssues(type);
-
-});
-
-});
-
 
 function filterIssues(type){
 
-if(type === "all"){
+if(type==="all") renderIssues(issues);
 
-renderIssues(issues);
+if(type==="open")
+renderIssues(issues.filter(i=>i.status==="OPEN"));
 
-}
-
-if(type === "open"){
-
-const openIssues = issues.filter(issue => issue.status === "OPEN");
-
-renderIssues(openIssues);
+if(type==="closed")
+renderIssues(issues.filter(i=>i.status==="CLOSED"));
 
 }
-
-if(type === "closed"){
-
-const closedIssues = issues.filter(issue => issue.status === "CLOSED");
-
-renderIssues(closedIssues);
-
-}
-
-}
-
-
-/* ------------------ SEARCH ------------------ */
-
-searchBtn.addEventListener("click", searchIssues);
 
 async function searchIssues(){
 
-const text = searchInput.value.trim();
+const text=document.getElementById("searchInput").value;
 
 if(!text){
-
 renderIssues(issues);
 return;
-
 }
 
-try{
+const res=await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`);
 
-showLoader();
+const data=await res.json();
 
-const response = await fetch(
-`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`
-);
-
-const data = await response.json();
-
-renderIssues(data.data || []);
-
-}catch(error){
-
-console.error("Search error:", error);
+renderIssues(data.data||[]);
 
 }
-
-hideLoader();
-
-}
-
-
-/* ------------------ MODAL ------------------ */
 
 function openModal(issue){
 
-document.getElementById("modalTitle").innerText = issue.title || "";
-document.getElementById("modalDesc").innerText = issue.description || "";
+document.getElementById("modalTitle").innerText=issue.title;
+document.getElementById("modalDesc").innerText=issue.description;
 
-document.getElementById("modalStatus").innerText = issue.status || "";
-document.getElementById("modalAuthor").innerText = issue.author || "N/A";
-document.getElementById("modalPriority").innerText = issue.priority || "N/A";
-document.getElementById("modalLabel").innerText = issue.label || "N/A";
-document.getElementById("modalCreated").innerText = issue.createdAt || "N/A";
+document.getElementById("modalStatus").innerText=issue.status;
+document.getElementById("modalAuthor").innerText=issue.author||"N/A";
+document.getElementById("modalPriority").innerText=issue.priority||"N/A";
+document.getElementById("modalLabel").innerText=issue.label||"N/A";
+document.getElementById("modalCreated").innerText=issue.createdAt||"N/A";
 
-modal.classList.add("show");
+document.getElementById("modal").classList.add("show");
 
 }
-
-
-closeModalBtn.addEventListener("click", closeModal);
 
 function closeModal(){
-
-modal.classList.remove("show");
-
-}
-
-
-/* ------------------ LOADER ------------------ */
-
-function showLoader(){
-
-loader.classList.add("show");
-
-}
-
-function hideLoader(){
-
-loader.classList.remove("show");
-
+document.getElementById("modal").classList.remove("show");
 }

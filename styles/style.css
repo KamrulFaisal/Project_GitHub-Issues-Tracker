@@ -1,16 +1,14 @@
 body{
-font-family: Arial;
+font-family:'Geist', sans-serif;
 margin:0;
 background:#f6f8fa;
 }
-
-/* hidden utility */
 
 .hidden{
 display:none;
 }
 
-/* LOGIN PAGE */
+/* LOGIN */
 
 .login-container{
 display:flex;
@@ -29,32 +27,23 @@ margin-bottom:20px;
 input{
 width:260px;
 padding:12px;
-margin:6px 0;
+margin:6px;
 border:1px solid #ccc;
 border-radius:6px;
-font-size:14px;
 }
-
-/* SIGN IN BUTTON */
 
 .loginBtn{
 width:260px;
 padding:12px;
-margin-top:8px;
 background:#4a00ff;
 color:white;
 border:none;
 border-radius:6px;
-font-size:16px;
 font-weight:bold;
 cursor:pointer;
 }
 
-.loginBtn:hover{
-opacity:0.9;
-}
-
-/* OR DIVIDER */
+/* DIVIDER */
 
 .divider{
 display:flex;
@@ -73,15 +62,6 @@ background:#ccc;
 
 .divider span{
 padding:0 10px;
-font-weight:bold;
-color:#666;
-}
-
-/* DEMO TEXT */
-
-.demo{
-font-size:14px;
-color:#444;
 }
 
 /* NAVBAR */
@@ -105,36 +85,55 @@ gap:10px;
 width:35px;
 }
 
+#searchBtn{
+padding:10px 18px;
+background:#4a00ff;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
 /* HEADER */
 
 .issueHeader{
-display:flex;
-justify-content:space-between;
 padding:20px;
 }
 
-.leftHeader{
+.tabs{
+margin-bottom:15px;
+}
+
+.tab{
+padding:8px 16px;
+border:1px solid #ddd;
+background:white;
+border-radius:6px;
+cursor:pointer;
+margin-right:6px;
+}
+
+.tab.active{
+background:#4a00ff;
+color:white;
+}
+
+.issueCountRow{
 display:flex;
 align-items:center;
 gap:10px;
 }
 
-.leftHeader img{
-width:28px;
+.issueCountRow img{
+width:25px;
 }
 
-.tabs button{
-margin-left:10px;
-padding:8px 14px;
-cursor:pointer;
+.subtitle{
+font-size:14px;
+color:#666;
 }
 
-.tab.active{
-background:black;
-color:white;
-}
-
-/* ISSUE GRID */
+/* GRID */
 
 .grid{
 display:grid;
@@ -151,24 +150,106 @@ padding:20px;
 .grid{grid-template-columns:1fr;}
 }
 
-/* ISSUE CARD */
+/* CARD */
 
 .card{
 background:white;
 padding:15px;
-border-radius:6px;
+border-radius:8px;
+border:1px solid #eee;
 cursor:pointer;
 }
 
-.openBorder{
-border-top:4px solid green;
+.cardTop{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:8px;
 }
 
-.closedBorder{
-border-top:4px solid purple;
+.statusIcon{
+width:18px;
 }
 
-/* MODAL (safe version) */
+/* PRIORITY */
+
+.priority{
+padding:4px 8px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+}
+
+.high{
+background:#ffe6e6;
+color:red;
+}
+
+.medium{
+background:#fff3cd;
+color:#c27c00;
+}
+
+.low{
+background:#eee;
+color:#555;
+}
+
+/* TITLE */
+
+.cardTitle{
+font-weight:600;
+margin-bottom:6px;
+}
+
+.cardDesc{
+color:#666;
+font-size:14px;
+margin-bottom:10px;
+}
+
+/* LABEL BUTTONS */
+
+.labelRow{
+display:flex;
+gap:6px;
+margin-bottom:10px;
+}
+
+.label{
+padding:4px 8px;
+border-radius:6px;
+font-size:12px;
+border:1px solid;
+}
+
+.bug{
+color:red;
+border-color:red;
+}
+
+.help{
+background:#fff3cd;
+color:#b06d00;
+border:none;
+}
+
+.enhancement{
+color:green;
+border-color:green;
+}
+
+/* FOOTER */
+
+.cardFooter{
+background:#f6f8fa;
+padding:8px;
+border-radius:6px;
+font-size:13px;
+color:#555;
+}
+
+/* MODAL */
 
 .modal{
 display:none;
@@ -203,20 +284,9 @@ float:right;
 
 .loader{
 display:none;
-border:6px solid #f3f3f3;
-border-top:6px solid black;
-border-radius:50%;
-width:40px;
-height:40px;
-animation:spin 1s linear infinite;
-margin:20px auto;
+margin:auto;
 }
 
 .loader.show{
 display:block;
-}
-
-@keyframes spin{
-0%{transform:rotate(0deg)}
-100%{transform:rotate(360deg)}
 }
