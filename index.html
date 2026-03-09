@@ -10,17 +10,14 @@
 
 <link rel="stylesheet" href="styles/style.css">
 
-<!-- Geist Font -->
-
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 </head>
 
-
 <body>
 
 
-<!-- LOGIN -->
+<!-- LOGIN PAGE -->
 
 <div id="loginPage">
 
@@ -29,11 +26,9 @@
 <img src="assets/github-logo.png" class="logo">
 
 <h1>GitHub Issues Tracker</h1>
-
 <p>Track and manage repository issues</p>
 
 <input id="username" placeholder="Username" required>
-
 <input id="password" type="password" placeholder="Password" required>
 
 <button class="loginBtn">Sign In</button>
@@ -59,12 +54,14 @@ Demo credentials <br><br>
 
 
 
-<!-- MAIN -->
+<!-- MAIN PAGE -->
 
 <div id="mainPage" class="hidden">
 
 
 <nav class="navbar">
+
+<div class="navInner">
 
 <div class="logoSection">
 
@@ -74,11 +71,13 @@ Demo credentials <br><br>
 
 </div>
 
-<div>
+<div class="navRight">
 
 <input id="searchInput" placeholder="Search issues">
 
-<button id="searchBtn">Search</button>
+<button id="newIssueBtn">+ New Issue</button>
+
+</div>
 
 </div>
 
@@ -86,7 +85,8 @@ Demo credentials <br><br>
 
 
 
-<div class="issueHeader">
+<div class="pageWrapper">
+
 
 <div class="tabs">
 
@@ -97,7 +97,10 @@ Demo credentials <br><br>
 </div>
 
 
-<div class="issueCountRow">
+
+<div class="issueHeader">
+
+<div class="issueLeft">
 
 <img src="assets/Aperture.png">
 
@@ -115,14 +118,22 @@ Track and manage your project issues
 
 </div>
 
+
+<div class="issueLegend">
+
+<span class="dot openDot"></span> Open
+
+<span class="dot closedDot"></span> Closed
+
+</div>
+
 </div>
 
 
 
-<div id="loader" class="loader"></div>
-
 <div id="issueContainer" class="grid"></div>
 
+</div>
 
 </div>
 

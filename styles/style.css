@@ -1,5 +1,5 @@
 body{
-font-family:'Geist', sans-serif;
+font-family:'Geist',sans-serif;
 margin:0;
 background:#f6f8fa;
 }
@@ -7,6 +7,7 @@ background:#f6f8fa;
 .hidden{
 display:none;
 }
+
 
 /* LOGIN */
 
@@ -24,10 +25,10 @@ width:80px;
 margin-bottom:20px;
 }
 
-input{
+.login-container input{
 width:260px;
 padding:12px;
-margin:6px;
+margin:6px 0;
 border:1px solid #ccc;
 border-radius:6px;
 }
@@ -39,11 +40,9 @@ background:#4a00ff;
 color:white;
 border:none;
 border-radius:6px;
-font-weight:bold;
+font-weight:600;
 cursor:pointer;
 }
-
-/* DIVIDER */
 
 .divider{
 display:flex;
@@ -57,22 +56,34 @@ margin:20px 0;
 content:"";
 flex:1;
 height:1px;
-background:#ccc;
+background:#ddd;
 }
 
 .divider span{
 padding:0 10px;
 }
 
+.demo{
+font-size:14px;
+color:#444;
+}
+
+
 /* NAVBAR */
 
 .navbar{
+background:white;
+border-bottom:1px solid #ddd;
+padding:15px 0;
+}
+
+.navInner{
+max-width:1600px;
+margin:auto;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px;
-background:white;
-border-bottom:1px solid #ddd;
+padding:0 20px;
 }
 
 .logoSection{
@@ -85,30 +96,43 @@ gap:10px;
 width:35px;
 }
 
-#searchBtn{
-padding:10px 18px;
+.navRight input{
+padding:10px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+#newIssueBtn{
 background:#4a00ff;
 color:white;
 border:none;
+padding:10px 18px;
 border-radius:6px;
+margin-left:10px;
 cursor:pointer;
 }
 
-/* HEADER */
 
-.issueHeader{
+/* PAGE WIDTH */
+
+.pageWrapper{
+max-width:1110px;
+margin:auto;
 padding:20px;
 }
 
+
+/* TABS */
+
 .tabs{
-margin-bottom:15px;
+margin-bottom:20px;
 }
 
 .tab{
 padding:8px 16px;
 border:1px solid #ddd;
-background:white;
 border-radius:6px;
+background:white;
 cursor:pointer;
 margin-right:6px;
 }
@@ -118,20 +142,55 @@ background:#4a00ff;
 color:white;
 }
 
-.issueCountRow{
+
+/* HEADER */
+
+.issueHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.issueLeft{
 display:flex;
 align-items:center;
 gap:10px;
 }
 
-.issueCountRow img{
-width:25px;
+.issueLeft img{
+width:40px;
 }
 
 .subtitle{
+margin:0;
 font-size:14px;
 color:#666;
 }
+
+.issueLegend{
+display:flex;
+align-items:center;
+gap:15px;
+font-size:14px;
+}
+
+.dot{
+width:10px;
+height:10px;
+border-radius:50%;
+display:inline-block;
+margin-right:4px;
+}
+
+.openDot{
+background:green;
+}
+
+.closedDot{
+background:purple;
+}
+
 
 /* GRID */
 
@@ -139,7 +198,6 @@ color:#666;
 display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:20px;
-padding:20px;
 }
 
 @media(max-width:900px){
@@ -150,6 +208,7 @@ padding:20px;
 .grid{grid-template-columns:1fr;}
 }
 
+
 /* CARD */
 
 .card{
@@ -159,6 +218,17 @@ border-radius:8px;
 border:1px solid #eee;
 cursor:pointer;
 }
+
+/* TOP BORDER COLORS */
+
+.openBorder{
+border-top:4px solid green;
+}
+
+.closedBorder{
+border-top:4px solid purple;
+}
+
 
 .cardTop{
 display:flex;
@@ -171,8 +241,6 @@ margin-bottom:8px;
 width:18px;
 }
 
-/* PRIORITY */
-
 .priority{
 padding:4px 8px;
 border-radius:20px;
@@ -180,22 +248,9 @@ font-size:12px;
 font-weight:600;
 }
 
-.high{
-background:#ffe6e6;
-color:red;
-}
-
-.medium{
-background:#fff3cd;
-color:#c27c00;
-}
-
-.low{
-background:#eee;
-color:#555;
-}
-
-/* TITLE */
+.high{background:#ffe6e6;color:red;}
+.medium{background:#fff3cd;color:#c27c00;}
+.low{background:#eee;color:#555;}
 
 .cardTitle{
 font-weight:600;
@@ -207,8 +262,6 @@ color:#666;
 font-size:14px;
 margin-bottom:10px;
 }
-
-/* LABEL BUTTONS */
 
 .labelRow{
 display:flex;
@@ -234,13 +287,6 @@ color:#b06d00;
 border:none;
 }
 
-.enhancement{
-color:green;
-border-color:green;
-}
-
-/* FOOTER */
-
 .cardFooter{
 background:#f6f8fa;
 padding:8px;
@@ -248,6 +294,7 @@ border-radius:6px;
 font-size:13px;
 color:#555;
 }
+
 
 /* MODAL */
 
@@ -278,15 +325,4 @@ border-radius:8px;
 cursor:pointer;
 font-size:22px;
 float:right;
-}
-
-/* LOADER */
-
-.loader{
-display:none;
-margin:auto;
-}
-
-.loader.show{
-display:block;
 }
