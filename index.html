@@ -42,8 +42,56 @@
     <input id="searchInput" placeholder="Search issues">
     <button onclick="searchIssues()">Search</button>
     </div>
-
     </nav>
+
+    <!-- ISSUE HEADER -->
+
+    <div class="issueHeader">
+
+    <div class="leftHeader">
+    <img src="./Github-Issue-Tracker/assets/Aperture.png">
+    <span id="issueCount">0 Issues</span>
+    </div>
+
+    <div class="tabs">
+
+    <button class="tab active"      onclick="loadTab('all')">All</button>
+    <button class="tab" onclick="loadTab('open')">Open</button>
+    <button class="tab" onclick="loadTab('closed')">Closed</button>
+    </div>
+</div>
+
+    <!-- LOADER -->
+
+    <div id="loader" class="loader hidden"></div>
+
+    <!-- ISSUE GRID -->
+
+    <div id="issueContainer" class="grid"></div>
+</div>
+    <!-- MODAL -->
+
+    <div id="modal" class="modal hidden">
+
+    <div class="modalContent">
+
+    <span class="close" onclick="closeModal()">×</span>
+
+    <h2 id="modalTitle"></h2>
+
+    <p id="modalDesc"></p>
+
+    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+    <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
+    <p><strong>Priority:</strong> <span id="modalPriority"></span></p>
+    <p><strong>Label:</strong> <span id="modalLabel"></span></p>
+    <p><strong>Created:</strong> <span id="modalCreated"></span></p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
     
 </body>
 </html>
